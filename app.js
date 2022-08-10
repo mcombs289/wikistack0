@@ -3,9 +3,12 @@ const app = express();
 const morgan = require("morgan");
 const layout = require("./views/layout");
 const { db, Page, User } = require("./models");
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/users');
 
+app.use('/wiki', wikiRouter);
+app.use('/users', userRouter);
 app.use(express.urlencoded({ extended: false }));
-
 app.use("/public", express.static("public"));
 
 const init = async () => {
